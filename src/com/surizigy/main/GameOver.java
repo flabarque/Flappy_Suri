@@ -16,8 +16,11 @@ public class GameOver extends Menu {
 	private boolean showMessage = true;
 	//private int framesGameOver = 0;	
 	
+	private int finalScore = 0;
+	
 	public void tick() {
 		Sounds.musicBackground.stop(0);
+		
 		frames++;
 		if(frames == 30) {
 			frames = 0;
@@ -25,7 +28,29 @@ public class GameOver extends Menu {
 				showMessage = false;
 			else
 				showMessage = true;
-		}		
+		}
+		
+		finalScore++;
+		Sounds.points.play(0.5);
+		if(finalScore == (int)Game.score) {
+			finalScore--;
+			Sounds.points.stop(0);
+		}
+		
+		/*for (int i = 0; i < (int)Game.score; i++) {	
+			if (i < (int)Game.score) {
+				Sounds.points.play(0.5);
+			}else {
+				i = 0;
+			}		
+		}*/
+		/*if (finalScore < (int)Game.score) {
+			Sounds.points.play(0.5);
+			finalScore = (int)Game.score;
+		}else if (finalScore == (int)Game.score) {
+			finalScore = 0;
+			}*/
+					
 	}
 	
 	public void render(Graphics g) {
@@ -48,32 +73,27 @@ public class GameOver extends Menu {
 			g.drawString(">Press SPACE to continue<", ((Game.WIDTH*Game.SCALE)/2) - 166, Game.HEIGHT*Game.SCALE - 121);
 		}
 		
-		if(Game.score >= 25) {
+		if(finalScore >= 25) {
 			g.drawImage(MEDALS[0], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
 		}
-		
-		if(Game.score >= 50) {
+		if(finalScore >= 50) {
 			g.drawImage(MEDALS[1], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
 		}
-		
-		if(Game.score >= 75) {
+		if(finalScore >= 75) {
 			g.drawImage(MEDALS[2], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
 		}
-		
-		if(Game.score >= 100) {
+		if(finalScore >= 100) {
 			g.drawImage(MEDALS[3], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
 		}
 		
-		String digits = ""+(int)Game.score;			
+		String digits = ""+finalScore;			
 		for (int i = 0; i < digits.length(); i++) {				
 			if(i != digits.length() - 1) {				
 				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}else {
 				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 153, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}				
-		}		
-		
-		
+		}			
 		
 	}
 	
