@@ -7,11 +7,11 @@ import java.awt.image.BufferedImage;
 
 import com.surizigy.entities.Entity;
 
-public class GetReady {
+public class GetReady extends Menu {
 
 	public static BufferedImage GET_READY = Game.spritesheet.getSprite(48, 228, 67, 36);
 	
-	public String[] options = {">Press SPACE<"};
+	/*public String[] options = {">Press SPACE<"};
 	public int currentOption = 0;
 	
 	private int frames = 0, maxFrames = 25, index = 0, maxIndex = 1;
@@ -19,7 +19,7 @@ public class GetReady {
 	public boolean space;
 	
 	private int frames_w = 0, maxFrames_w = 1, index_w = 0, maxIndex_w = 7;
-	public boolean isWaiting = true;
+	public boolean isWaiting = true;*/
 	
 	public void tick() {				
 		
@@ -34,10 +34,10 @@ public class GetReady {
 			frames++;
 			if(frames == maxFrames) {
 				frames = 0;
-				index++;
+				index1++;
 			}
-			if (index > maxIndex) {
-				index = 0;
+			if (index1 > maxIndex) {
+				index1 = 0;
 			}
 		}
 		if(isWaiting) {		
@@ -55,7 +55,7 @@ public class GetReady {
 	
 	public void render(Graphics g) {		
 		g.drawImage(GET_READY, ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 76*Game.SCALE, 36*Game.SCALE, null);
-		g.drawImage(Menu.SPACE[index], ((Game.WIDTH*Game.SCALE) / 2) + 70, ((Game.HEIGHT*Game.SCALE) / 2) + 50, 24*Game.SCALE, 8*Game.SCALE, null);
+		g.drawImage(Menu.SPACE[index1], ((Game.WIDTH*Game.SCALE) / 2) + 70, ((Game.HEIGHT*Game.SCALE) / 2) + 50, 24*Game.SCALE, 8*Game.SCALE, null);
 		if(isWaiting) {
 			g.drawImage(Entity.PLAYER_IS_FLYING[index_w], Game.WIDTH*Game.SCALE/4, Game.HEIGHT*Game.SCALE/2, 37*Game.SCALE, 32*Game.SCALE, null);
 		}	

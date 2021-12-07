@@ -22,9 +22,9 @@ public class Menu {
 			
 	public static boolean pause = false;
 	
-	private int frames = 0, maxFrames = 25, index1 = 0, index2 =0, maxIndex = 1;
+	public int frames = 0, maxFrames = 25, index1 = 0, index2 =0, maxIndex = 1;
 	
-	private int frames_w = 0, maxFrames_w = 1, index_w = 0, maxIndex_w = 7;
+	public int frames_w = 0, maxFrames_w = 1, index_w = 0, maxIndex_w = 7;
 	public boolean isWaiting = true;
 	
 	public void tick() {		

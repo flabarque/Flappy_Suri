@@ -1,11 +1,8 @@
 package com.surizigy.main;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -45,12 +42,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Sounds sounds;
 	
 	public static String gameState = "MENU"; //State: Menu, Get_Ready, Playing, Falling, Game_Over
-	private boolean showMessageGameOver = true;
-	private int framesGameOver = 0;
+	//private boolean showMessageGameOver = true;
+	//private int framesGameOver = 0;
 	private boolean restartGame = false;
 	
 	public Menu menu;
 	public GetReady getReady;
+	public GameOver gameOver;
 	
 	public static double score = 0;
 	
@@ -72,6 +70,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 		menu = new Menu();
 		getReady = new GetReady();
+		gameOver = new GameOver();
 		
 	}
 	
@@ -135,7 +134,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			parallax.tick();
 	
 		}else if(gameState == "GAME_OVER") {
-			Sounds.musicBackground.stop(0);
+			gameOver.tick();
+			/*Sounds.musicBackground.stop(0);
 			this.framesGameOver++;
 			if(this.framesGameOver == 30) {
 				this.framesGameOver = 0;
@@ -143,7 +143,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 					this.showMessageGameOver = false;
 				else
 					this.showMessageGameOver = true;
-				}
+				}*/
 			
 			if(restartGame) {
 				restartGame = false;
@@ -187,7 +187,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			getReady.render(g);
 		
 		}else if(gameState == "GAME_OVER") {
-			Graphics2D g2 = (Graphics2D) g; 
+			gameOver.render(g);
+			/*Graphics2D g2 = (Graphics2D) g; 
 			g2.setColor(new Color(0, 0, 0, 100)); //opacidade
 			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 			//g2.setFont(new Font("calibri", Font.BOLD, 50));
@@ -203,7 +204,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				g2.setFont(new Font("calibri", Font.BOLD, 30));
 				g2.setColor(Color.white);
 				g2.drawString(">Press SPACE to continue<", ((WIDTH*SCALE)/2) - 166, ((HEIGHT*SCALE)/2) + 39);				
-			}
+			}*/
 		}		
 		
 		bs.show();
