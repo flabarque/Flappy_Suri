@@ -50,6 +50,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public GetReady getReady;
 	public GameOver gameOver;
 	
+	public HighScore highScore;
+	
 	public static double score = 0;
 	
 	public Game() {
@@ -71,6 +73,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		menu = new Menu();
 		getReady = new GetReady();
 		gameOver = new GameOver();
+		highScore = new HighScore();
 		
 	}
 	
@@ -135,6 +138,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	
 		}else if(gameState == "GAME_OVER") {
 			gameOver.tick();
+			highScore.tick();
 			/*Sounds.musicBackground.stop(0);
 			this.framesGameOver++;
 			if(this.framesGameOver == 30) {

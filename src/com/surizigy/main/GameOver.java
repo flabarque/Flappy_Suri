@@ -18,6 +18,8 @@ public class GameOver extends Menu {
 	
 	private int finalScore = 0;
 	
+	//private boolean scoreGreater = false;
+	
 	public void tick() {
 		Sounds.musicBackground.stop(0);
 		
