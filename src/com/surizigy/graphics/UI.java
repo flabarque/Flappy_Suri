@@ -36,7 +36,7 @@ public class UI {
 			String digits = ""+(int)Game.score;			
 			for (int i = 0; i < digits.length(); i++) {				
 				if(i != digits.length() - 1) {				
-					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18*3 - 1, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
+					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
 				}else {
 					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
 			//g.setColor(Color.white);
@@ -44,7 +44,7 @@ public class UI {
 			//g.drawString(""+(int)Game.score, Game.WIDTH*Game.SCALE/2 - 15, Game.HEIGHT*Game.SCALE/4);		
 				}				
 			}
-		}			
+		}		
 	}
 	
 }

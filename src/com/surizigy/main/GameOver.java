@@ -5,23 +5,25 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.surizigy.graphics.UI;
+
 public class GameOver extends Menu {
 
 	public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
 	public static BufferedImage BOARD = Game.spritesheet.getSprite(0, 265, 106, 72);
 	
-	private boolean showMessageGameOver = true;
-	private int framesGameOver = 0;	
+	private boolean showMessage = true;
+	//private int framesGameOver = 0;	
 	
 	public void tick() {
 		Sounds.musicBackground.stop(0);
-		framesGameOver++;
-		if(framesGameOver == 30) {
-			framesGameOver = 0;
-			if(showMessageGameOver)
-				showMessageGameOver = false;
+		frames++;
+		if(frames == 30) {
+			frames = 0;
+			if(showMessage)
+				showMessage = false;
 			else
-				showMessageGameOver = true;
+				showMessage = true;
 		}	
 	}
 	
@@ -35,7 +37,8 @@ public class GameOver extends Menu {
 		//g2.setFont(new Font("calibri", Font.BOLD, 30));
 		//g2.setColor(Color.white);
 		g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 53*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 36*Game.SCALE, 106*Game.SCALE, 72*Game.SCALE, null);
-		if(showMessageGameOver) {
+		
+		if(showMessage) {
 			g.setFont(new Font("calibri", Font.BOLD, 30));
 			g.setColor(Color.black);
 			g.drawString(">Press SPACE to continue<", ((Game.WIDTH*Game.SCALE)/2) - 165, Game.HEIGHT*Game.SCALE - 120);
@@ -43,6 +46,16 @@ public class GameOver extends Menu {
 			g.setColor(Color.white);
 			g.drawString(">Press SPACE to continue<", ((Game.WIDTH*Game.SCALE)/2) - 166, Game.HEIGHT*Game.SCALE - 121);
 		}
+							
+		String digits = ""+(int)Game.score;			
+		for (int i = 0; i < digits.length(); i++) {				
+			if(i != digits.length() - 1) {				
+				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 148) - 11*2, Game.HEIGHT*Game.SCALE/2 - 42, 11*2, 14*2, null);
+			}else {
+				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 148, Game.HEIGHT*Game.SCALE/2 - 42, 11*2, 14*2, null);
+			}				
+		}		
+		
 	}
 	
 }
