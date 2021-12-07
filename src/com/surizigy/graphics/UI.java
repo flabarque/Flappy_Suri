@@ -7,7 +7,7 @@ import com.surizigy.main.Game;
 
 public class UI {
 
-	public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
+	//public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
 	
 	public static BufferedImage[] BIG_NUMBER = {Game.spritesheet.getSprite(167, 4, 18, 25),
 												Game.spritesheet.getSprite(167, 36, 18, 25),
