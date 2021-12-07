@@ -11,7 +11,8 @@ public class GameOver extends Menu {
 
 	public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
 	public static BufferedImage BOARD = Game.spritesheet.getSprite(0, 265, 106, 72);
-	
+	public static BufferedImage[] MEDALS = {Game.spritesheet.getSprite(182, 288, 18, 18), Game.spritesheet.getSprite(164, 288, 18, 18), Game.spritesheet.getSprite(146, 288, 18, 18), Game.spritesheet.getSprite(128, 288, 18, 18)};
+		
 	private boolean showMessage = true;
 	//private int framesGameOver = 0;	
 	
@@ -24,7 +25,7 @@ public class GameOver extends Menu {
 				showMessage = false;
 			else
 				showMessage = true;
-		}	
+		}		
 	}
 	
 	public void render(Graphics g) {
@@ -46,15 +47,33 @@ public class GameOver extends Menu {
 			g.setColor(Color.white);
 			g.drawString(">Press SPACE to continue<", ((Game.WIDTH*Game.SCALE)/2) - 166, Game.HEIGHT*Game.SCALE - 121);
 		}
-							
+		
+		if(Game.score >= 25) {
+			g.drawImage(MEDALS[0], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
+		}
+		
+		if(Game.score >= 50) {
+			g.drawImage(MEDALS[1], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
+		}
+		
+		if(Game.score >= 75) {
+			g.drawImage(MEDALS[2], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
+		}
+		
+		if(Game.score >= 100) {
+			g.drawImage(MEDALS[3], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
+		}
+		
 		String digits = ""+(int)Game.score;			
 		for (int i = 0; i < digits.length(); i++) {				
 			if(i != digits.length() - 1) {				
-				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 148) - 11*2, Game.HEIGHT*Game.SCALE/2 - 42, 11*2, 14*2, null);
+				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}else {
-				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 148, Game.HEIGHT*Game.SCALE/2 - 42, 11*2, 14*2, null);
+				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 153, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}				
 		}		
+		
+		
 		
 	}
 	
