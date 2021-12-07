@@ -33,10 +33,28 @@ public class GameOver extends Menu {
 		}
 		
 		finalScore++;
-		Sounds.points.play(0.5);
-		if(finalScore == (int)Game.score) {
-			finalScore--;
-			Sounds.points.stop(0);
+		if(Game.score == 0) {
+			finalScore = 0;			
+		}else {
+			//finalScore++;
+			Sounds.points.play(0.5);
+			if(finalScore == (int)Game.score + 1) {
+				finalScore--;
+				Sounds.points.stop(0);
+			}
+		}
+		
+		if(finalScore == 25) {
+			Sounds.medal.play(0.5);
+		}
+		if(finalScore == 50) {
+			Sounds.medal.play(0.5);
+		}
+		if(finalScore == 75) {
+			Sounds.medal.play(0.5);
+		}
+		if(finalScore == 100) {
+			Sounds.medal.play(0.5);
 		}
 		
 		/*for (int i = 0; i < (int)Game.score; i++) {	

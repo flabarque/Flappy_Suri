@@ -47,7 +47,7 @@ public class Menu {
 			if(options[currentOption] == ">Press SPACE<") {
 				Game.gameState = "GET_READY";
 				//pause = false;				
-			}if(pause) {
+			}if(pause) {				
 				if(options[currentOption] == ">Press SPACE<") {
 					Game.gameState = "PLAYING";
 					pause = false;	
