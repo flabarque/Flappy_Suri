@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import com.surizigy.graphics.UI;
 
@@ -16,11 +17,12 @@ public class GameOver extends Menu {
 	private boolean showMessage = true;
 	//private int framesGameOver = 0;	
 	
-	private int finalScore = 0;
+	private int finalScore;
+	private int bestScore;
 	
 	//private boolean scoreGreater = false;
 	
-	public void tick() {
+	public void tick() {		
 		Sounds.musicBackground.stop(0);
 		
 		frames++;
@@ -33,15 +35,32 @@ public class GameOver extends Menu {
 		}
 		
 		finalScore++;
-		if(Game.score == 0) {
+		if((int)Game.score == 0) {
 			finalScore = 0;			
 		}else {
 			//finalScore++;
 			Sounds.points.play(0.5);
 			if(finalScore == (int)Game.score + 1) {
 				finalScore--;
-				Sounds.points.stop(0);
+				Sounds.points.stop(0);			
 			}
+			
+			if((int)Game.score > bestScore) {			
+				bestScore = (int)Game.score;
+				//scoreGreater = true;		
+				String[] opt1 = {"bestScore"}; //salvando o nivel, mas podemos colocar outros parametros, como vida, posição dos inimigos, etc.
+				int[] opt2 = {(int)Game.score};
+				HighScore.saveGame(opt1, opt2, 10); //neste caso o encode é igual a 10
+				System.out.println("New Best Score!");			
+			}else {
+				//scoreGreater = false;
+				File file = new File("save.txt");
+				if(file.exists()) {			
+					String saver = HighScore.loadGame(10); //10 é o encode que usamos
+					HighScore.applySave(saver);				
+				}
+			}
+			
 		}
 		
 		if(finalScore == 25) {
@@ -56,6 +75,31 @@ public class GameOver extends Menu {
 		if(finalScore == 100) {
 			Sounds.medal.play(0.5);
 		}
+		
+		//salvar novo highscore
+		/*if((int)Game.score > bestScore) {			
+			bestScore = (int)Game.score;
+			//scoreGreater = true;		
+			String[] opt1 = {"bestScore"}; //salvando o nivel, mas podemos colocar outros parametros, como vida, posição dos inimigos, etc.
+			int[] opt2 = {(int)Game.score};
+			HighScore.saveGame(opt1, opt2, 10); //neste caso o encode é igual a 10
+			System.out.println("New Best Score!");			
+		}else {
+			//scoreGreater = false;
+			File file = new File("save.txt");
+			if(file.exists()) {			
+				String saver = HighScore.loadGame(10); //10 é o encode que usamos
+				HighScore.applySave(saver);				
+			}
+		}*/
+		
+		
+		//ver highscore 
+		/*if(scoreGreater == false) {
+			String saver = HighScore.loadGame(10); //10 é o encode que usamos
+			HighScore.applySave(saver);
+		}*/
+		
 		
 		/*for (int i = 0; i < (int)Game.score; i++) {	
 			if (i < (int)Game.score) {
@@ -107,14 +151,22 @@ public class GameOver extends Menu {
 		}
 		
 		String digits = ""+finalScore;			
-		for (int i = 0; i < digits.length(); i++) {				
+		for (int i = 0; i < digits.length(); i++) {					
 			if(i != digits.length() - 1) {				
 				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}else {
 				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 153, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
 			}				
-		}			
-		
-	}
+		}
+			
+		String digits_1 = ""+bestScore;			
+			for (int i = 0; i < digits_1.length(); i++) {				
+				if(i != digits_1.length() - 1) {				
+					g.drawImage(UI.SMALL_NUMBER[digits_1.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 + 35, 11*Game.SCALE, 14*Game.SCALE, null);
+				}else {
+					g.drawImage(UI.SMALL_NUMBER[digits_1.charAt(i) - '0'], Game.WIDTH*Game.SCALE - 153, Game.HEIGHT*Game.SCALE/2 + 35, 11*Game.SCALE, 14*Game.SCALE, null);
+				}					
+		}
+	}			
 	
 }

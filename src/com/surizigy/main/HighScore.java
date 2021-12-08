@@ -86,4 +86,16 @@ public class HighScore {
 		return line;
 	}
 	
+	public static void applySave(String str) {
+		String[] spl = str.split("/");
+		for(int i = 0; i < spl.length; i++) {
+			String[] spl2 = spl[i].split(":"); //pegando o valor que fue salvo
+			switch(spl2[0]) {				
+				case "bestScore":
+					Game.score = Integer.parseInt(spl2[1]); //Intger.parseInt converte double em String
+					break;
+			}
+		}
+	}
+	
 }
