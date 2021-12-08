@@ -10,7 +10,7 @@ import com.surizigy.graphics.UI;
 public class GameOver extends Menu {
 
 	public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
-	public static BufferedImage BOARD = Game.spritesheet.getSprite(0, 265, 106, 72);
+	public static BufferedImage BOARD = Game.spritesheet.getSprite(2, 267, 114, 82);
 	public static BufferedImage[] MEDALS = {Game.spritesheet.getSprite(182, 288, 18, 18), Game.spritesheet.getSprite(164, 288, 18, 18), Game.spritesheet.getSprite(146, 288, 18, 18), Game.spritesheet.getSprite(128, 288, 18, 18)};
 		
 	private boolean showMessage = true;
@@ -82,7 +82,7 @@ public class GameOver extends Menu {
 		g.drawImage(GAME_OVER, ((Game.WIDTH*Game.SCALE) / 2) - 33*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 66*Game.SCALE, 25*Game.SCALE, null);
 		//g2.setFont(new Font("calibri", Font.BOLD, 30));
 		//g2.setColor(Color.white);
-		g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 53*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 36*Game.SCALE, 106*Game.SCALE, 72*Game.SCALE, null);
+		g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 57*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 41*Game.SCALE, 114*Game.SCALE, 82*Game.SCALE, null);
 		
 		if(showMessage) {
 			g.setFont(new Font("calibri", Font.BOLD, 30));
