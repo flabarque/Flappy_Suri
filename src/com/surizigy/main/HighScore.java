@@ -13,6 +13,8 @@ public class HighScore {
 	public static boolean saveExists = false;
 	public static boolean saveGame = false;
 	
+	public static int bestScore;
+	
 	public void tick() {
 		File file = new File("save.txt");
 		if(file.exists()) {
@@ -92,10 +94,27 @@ public class HighScore {
 			String[] spl2 = spl[i].split(":"); //pegando o valor que fue salvo
 			switch(spl2[0]) {				
 				case "bestScore":
-					Game.score = Integer.parseInt(spl2[1]); //Intger.parseInt converte double em String
+					bestScore = Integer.parseInt(spl2[1]); //Intger.parseInt converte double em String
 					break;
 			}
 		}
+	}
+	
+	public static int bestScore() {
+		File file = new File("save.txt");
+		if(file.exists()) {			
+			String saver = loadGame(10); //10 é o encode que usamos
+			applySave(saver);	
+		}
+		return bestScore;
+	}
+	
+	public static void setNewBest (int newBestScore) {
+		bestScore = newBestScore;
+		String[] opt1 = {"bestScore"}; //salvando o nivel, mas podemos colocar outros parametros, como vida, posição dos inimigos, etc.
+		int[] opt2 = {(int)Game.score};
+		HighScore.saveGame(opt1, opt2, 10); //neste caso o encode é igual a 10
+		System.out.println("New Best Score!");		
 	}
 	
 }

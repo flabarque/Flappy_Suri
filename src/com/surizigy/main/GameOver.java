@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import com.surizigy.graphics.UI;
 
@@ -18,7 +17,7 @@ public class GameOver extends Menu {
 	//private int framesGameOver = 0;	
 	
 	private int finalScore;
-	private int bestScore;
+	//private int bestScore;
 	
 	//private boolean scoreGreater = false;
 	
@@ -34,34 +33,25 @@ public class GameOver extends Menu {
 				showMessage = true;
 		}
 		
-		finalScore++;
-		if((int)Game.score == 0) {
+		//finalScore++;
+		/*if((int)Game.score == 0) {
 			finalScore = 0;			
-		}else {
-			//finalScore++;
-			Sounds.points.play(0.5);
-			if(finalScore == (int)Game.score + 1) {
-				finalScore--;
-				Sounds.points.stop(0);			
-			}
-			
-			if((int)Game.score > bestScore) {			
-				bestScore = (int)Game.score;
-				//scoreGreater = true;		
-				String[] opt1 = {"bestScore"}; //salvando o nivel, mas podemos colocar outros parametros, como vida, posição dos inimigos, etc.
-				int[] opt2 = {(int)Game.score};
-				HighScore.saveGame(opt1, opt2, 10); //neste caso o encode é igual a 10
-				System.out.println("New Best Score!");			
-			}else {
-				//scoreGreater = false;
-				File file = new File("save.txt");
-				if(file.exists()) {			
-					String saver = HighScore.loadGame(10); //10 é o encode que usamos
-					HighScore.applySave(saver);				
-				}
-			}
-			
+		}else {*/					
+		
+		if((int)Game.score > HighScore.bestScore()) {
+			//scoreGreater = true;
+			HighScore.setNewBest((int)Game.score);
 		}
+					
+		//if((int)Game.score > 0) {
+			finalScore++;
+			Sounds.points.play(0.5);
+				if(finalScore > (int)Game.score) {
+					finalScore--;				
+					Sounds.points.stop(0);			
+				}
+		//}			
+				
 		
 		if(finalScore == 25) {
 			Sounds.medal.play(0.5);
@@ -159,7 +149,7 @@ public class GameOver extends Menu {
 			}				
 		}
 			
-		String digits_1 = ""+bestScore;			
+		String digits_1 = ""+HighScore.bestScore;			
 			for (int i = 0; i < digits_1.length(); i++) {				
 				if(i != digits_1.length() - 1) {				
 					g.drawImage(UI.SMALL_NUMBER[digits_1.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 + 35, 11*Game.SCALE, 14*Game.SCALE, null);
