@@ -140,7 +140,7 @@ public class GameOver extends Menu {
 			g.drawImage(MEDALS[3], ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 2*Game.SCALE, 18*Game.SCALE, 18*Game.SCALE, null);
 		}
 		
-		String digits = ""+finalScore;			
+		String digits = ""+(int)Game.score;			
 		for (int i = 0; i < digits.length(); i++) {					
 			if(i != digits.length() - 1) {				
 				g.drawImage(UI.SMALL_NUMBER[digits.charAt(i) - '0'], (Game.WIDTH*Game.SCALE - 153) - 11*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/2 - 45, 11*Game.SCALE, 14*Game.SCALE, null);
