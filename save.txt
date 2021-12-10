@@ -1,1 +1,1 @@
-bestScore:<@
+bestScore:=<
