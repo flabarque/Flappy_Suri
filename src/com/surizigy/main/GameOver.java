@@ -18,6 +18,7 @@ public class GameOver extends Menu {
 	
 	private int finalScore;
 	//private int bestScore;
+	private boolean getMedal = true;
 	
 	//private boolean scoreGreater = false;
 	
@@ -44,29 +45,34 @@ public class GameOver extends Menu {
 		}
 					
 		//if((int)Game.score > 0) {
-			finalScore++;
-			Sounds.points.play(0.5);
-				if(finalScore > (int)Game.score) {
-					finalScore = (int)Game.score;
-					//finalScore--;				
-					Sounds.points.stop(0);			
-				}
+		finalScore++;
+		Sounds.points.play(0.5);
+		
+		if(finalScore > (int)Game.score) {
+			finalScore = (int)Game.score;
+			//finalScore--;				
+			Sounds.points.stop(0);			
+		}
 		//}			
 				
-		
-		if(finalScore == 25) {
-			Sounds.medal.play(0.5);
+		if(getMedal) {				
+			if(finalScore == 25) {
+				getMedal = false;
+				Sounds.medal.play(0.5);			
+			}			
+			if(finalScore == 50) {
+				getMedal = false;
+				Sounds.medal.play(0.5);
+			}
+			if(finalScore == 75) {
+				getMedal = false;
+				Sounds.medal.play(0.5);
+			}
+			if(finalScore == 100) {
+				getMedal = false;
+				Sounds.medal.play(0.5);
+			}
 		}
-		if(finalScore == 50) {
-			Sounds.medal.play(0.5);
-		}
-		if(finalScore == 75) {
-			Sounds.medal.play(0.5);
-		}
-		if(finalScore == 100) {
-			Sounds.medal.play(0.5);
-		}
-		
 		//salvar novo highscore
 		/*if((int)Game.score > bestScore) {			
 			bestScore = (int)Game.score;
