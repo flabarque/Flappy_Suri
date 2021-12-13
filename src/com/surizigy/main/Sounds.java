@@ -96,6 +96,6 @@ public class Sounds {
 	public static Clips flyingSuri = load("/Helicopter_Suri_10.wav", 3);
 	public static Clips points = load("/Pickup_Coin_01.wav", 1);
 	public static Clips tubeHit = load("/Kitten_Mew_01.wav", 2);
-	public static Clips medal = load("/Medal_01.wav", 2);
+	public static Clips medal = load("/Medal_01.wav", 4);
 	
 }

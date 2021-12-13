@@ -33,6 +33,16 @@ public class UI {
 	
 	public void render(Graphics g) {
 		if(Game.gameState == "PLAYING") {				
+			/*int temp = (int)Game.score;
+			int widthScore;
+			
+			while(temp > 0) {
+				switch(temp % 10) {
+				case 0:
+					widthScore = Game.WIDTH*Game.SCALE/2 - 18;
+				}
+			}*/
+			
 			String digits = ""+(int)Game.score;			
 			for (int i = 0; i < digits.length(); i++) {				
 				//if(i != (digits.length() - 1)*100) {				

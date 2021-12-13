@@ -37,7 +37,7 @@ public class Parallax {
 	}
 	
 	public void tick() {
-		if(Game.score > 50) {
+		if(Game.score > 51) {
 			x_spd=+2;
 		}
 		
