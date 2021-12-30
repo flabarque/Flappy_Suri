@@ -11,7 +11,8 @@ import com.surizigy.world.Camera;
 
 public class Entity {
 
-	//initializing Variables 
+	//initializing Variables
+	//images
 	public static BufferedImage[] PLAYER_IS_FLYING = {Game.spritesheet.getSprite(0, 0, 37, 32), Game.spritesheet.getSprite(38, 0, 37, 32), Game.spritesheet.getSprite(76, 0, 37, 32), Game.spritesheet.getSprite(114, 0, 37, 32), Game.spritesheet.getSprite(0, 32, 37, 32), Game.spritesheet.getSprite(38, 32, 37, 32), Game.spritesheet.getSprite(76, 32, 37, 32), Game.spritesheet.getSprite(114, 32, 37, 32)};
 	public static BufferedImage PLAYER_HIT = Game.spritesheet.getSprite(0, 192, 39, 37);
 	public static BufferedImage ZIGGY_96 = Game.spritesheet.getSprite(128, 64, 32, 128);
