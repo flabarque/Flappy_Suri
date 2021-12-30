@@ -22,7 +22,8 @@ import com.surizigy.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 
-	//initializing variables 
+	//initializing Variables
+	//Java Frame, size
 	private static final long serialVersionUID = 1L;
 	public static JFrame frame;
 	private Thread thread;
@@ -31,6 +32,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static final int HEIGHT = 240;
 	public static final int SCALE = 3;
 	
+	//images, sound and other Classes 
 	private BufferedImage image;
 	public static List<Entity> entities;
 	public static Spritesheet spritesheet;
@@ -41,24 +43,26 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Parallax parallax;
 	public static Sounds sounds;
 	
-	public static String gameState = "MENU"; //State: Menu, Get_Ready, Playing, Falling, Game_Over
-	//private boolean showMessageGameOver = true;
-	//private int framesGameOver = 0;
+	//game start
+	public static String gameState = "MENU";
 	private boolean restartGame = false;
 	
+	//game states
 	public Menu menu;
 	public GetReady getReady;
 	public GameOver gameOver;
 	
+	//score
 	public HighScore highScore;
-	
 	public static double score = 0;
 	
-	public Game() {
-		//initializing Game			
+	//initializing Game	
+	public Game() {				
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		initFrame();
+		
+		//initializing Classes
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		
 		entities = new ArrayList<Entity>();
@@ -77,8 +81,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 	}
 	
-	public void initFrame() {
-		//initializing Java Frame
+	//initializing Java Frame
+	public void initFrame() {		
 		frame = new JFrame("Flappy Suri");
 		frame.add(this);
 		frame.setResizable(false);
@@ -89,34 +93,33 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	
 	}
 	
-	public synchronized void start() {
-		//checking Start Game 
+	//checking Start Game
+	public synchronized void start() {		 
 		thread = new Thread(this);
 		isRunning = true;
 		thread.start();
 	
 	}
 	
-	public synchronized void stop() {
-		//checking Stop Game 
+	//checking Stop Game 
+	public synchronized void stop() {		
 		isRunning = false;
 		try {
 			thread.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (InterruptedException e) {			
 			e.printStackTrace();
 		}
 	
 	}
 	
-	public static void main(String[] args) {
-		//starting Game 
+	//starting Game 
+	public static void main(String[] args) {		
 		Game game = new Game();
 		game.start();		
 	}
 	
-	public void tick() {
-		//starting Loop		
+	//starting Loop	
+	public void tick() {			
 		if (gameState == "MENU") {			 
 			restartGame = false;			
 			menu.tick();			
@@ -132,22 +135,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				e.tick();
 			}
 						
-			tubegenerator.tick();
-			//ui.tick();
+			tubegenerator.tick();			
 			parallax.tick();
 	
 		}else if(gameState == "GAME_OVER") {
 			gameOver.tick();
-			highScore.tick();
-			/*Sounds.musicBackground.stop(0);
-			this.framesGameOver++;
-			if(this.framesGameOver == 30) {
-				this.framesGameOver = 0;
-				if(this.showMessageGameOver)
-					this.showMessageGameOver = false;
-				else
-					this.showMessageGameOver = true;
-				}*/
+			highScore.tick();			
 			
 			if(restartGame) {
 				restartGame = false;
@@ -158,8 +151,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				
 	}
 	
-	public void render() {
-		//rendering Game 
+	//rendering Game 
+	public void render() {		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null) {
 			this.createBufferStrategy(3);
@@ -167,9 +160,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		}
 		
 		//rendering Background
-		Graphics g = image.getGraphics();
-		//g.setColor(new Color(122, 102, 255));
-		//g.fillRect(0, 0, WIDTH, HEIGHT);
+		Graphics g = image.getGraphics();		
 		parallax.render(g);
 		
 		//rendering Entities
@@ -182,8 +173,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.dispose();
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+		//rendering Score
 		ui.render(g);
 		
+		//rendering States
 		if(gameState == "MENU") {
 			menu.render(g);
 		
@@ -191,32 +184,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			getReady.render(g);
 		
 		}else if(gameState == "GAME_OVER") {
-			gameOver.render(g);
-			/*Graphics2D g2 = (Graphics2D) g; 
-			g2.setColor(new Color(0, 0, 0, 100)); //opacidade
-			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
-			//g2.setFont(new Font("calibri", Font.BOLD, 50));
-			//g2.setColor(Color.white);
-			//g2.drawString("GAME OVER", ((WIDTH*SCALE)/2) - 115, ((HEIGHT*SCALE)/2) - 30);
-			g2.drawImage(UI.GAME_OVER, ((Game.WIDTH*Game.SCALE) / 2) - 33*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 90, 66*Game.SCALE, 25*Game.SCALE, null);
-			//g2.setFont(new Font("calibri", Font.BOLD, 30));
-			//g2.setColor(Color.white);
-			if(showMessageGameOver) {
-				g2.setFont(new Font("calibri", Font.BOLD, 30));
-				g2.setColor(Color.black);
-				g2.drawString(">Press SPACE to continue<", ((WIDTH*SCALE)/2) - 165, ((HEIGHT*SCALE)/2) + 40);
-				g2.setFont(new Font("calibri", Font.BOLD, 30));
-				g2.setColor(Color.white);
-				g2.drawString(">Press SPACE to continue<", ((WIDTH*SCALE)/2) - 166, ((HEIGHT*SCALE)/2) + 39);				
-			}*/
+			gameOver.render(g);			
 		}		
 		
 		bs.show();
 		
 	}
 	
-	public void run() {
-		//running Game FPS 
+	//running Game FPS 
+	public void run() {		
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -246,9 +222,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 	}
 	
+	//initializing Pressed Keys
 	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub		
+	public void keyPressed(KeyEvent e) {				
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {		
 			restartGame = true;			
 			if(gameState == "MENU") {
@@ -287,15 +263,16 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		}
 	}
 
+	//initializing Released Keys
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+	public void keyReleased(KeyEvent e) {		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			player.isFlying = false;
 		}
 		
 	}
 
+	//initializing Typed Keys
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
