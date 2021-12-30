@@ -7,27 +7,27 @@ import com.surizigy.main.Game;
 import com.surizigy.main.Menu;
 import com.surizigy.main.Sounds;
 import com.surizigy.world.Camera;
-//import com.surizigy.world.World;
 
 public class Player extends Entity {
 
-	//initializing variables 
+	//initializing Variables 
 	private int frames = 0, maxFrames = 1, index = 0, maxIndex = 7;
 	
 	public boolean isFlying = false;
 	public static boolean isHit = false;
-		
-	public Player(double x, double y, int width, int height, double speed, BufferedImage sprite) {
-		//initializing Player 
-		super(x, y, width, height, speed, sprite);
-		// TODO Auto-generated constructor stub
+	
+	//initializing Player
+	public Player(double x, double y, int width, int height, double speed, BufferedImage sprite) {		
+		super(x, y, width, height, speed, sprite); 
 	}
 
+	//initializing Loop
 	public void tick() {
-		//Flying physics 
+		//flying Physics 
 		depth = 2;
 		speed = 1.5;		
 		
+		//velocity for difficulty
 		if(Game.score < 75) {
 			if(!isFlying) {
 				y+=1.5*speed;
@@ -58,14 +58,13 @@ public class Player extends Entity {
 			}
 		}
 					
-		//End game --> now Restart but adapt to score and restart
+		//ending Game
 		if(y > Game.HEIGHT + 32) {
-			Game.gameState = "GAME_OVER";
-			//World.restartGame();
+			Game.gameState = "GAME_OVER";			
 			return;
 		}
 		
-		//Entity collision --> now Restart
+		//entity Collision
 		for(int i = 0; i < Game.entities.size(); i++) {
 			Entity e = Game.entities.get(i);
 			if (e != this) {
@@ -75,16 +74,15 @@ public class Player extends Entity {
 					isFlying = false;					
 					return;
 				}else {
-					Sounds.tubeHit.stop(0);
-					//return;
+					Sounds.tubeHit.stop(0);					
 				}				
 			}
 		}		
 				
 	}
 	
-	public void render(Graphics g) {
-		//rendering Player			
+	//rendering Player
+	public void render(Graphics g) {					
 		if(Game.gameState == "PLAYING" || Menu.pause) {
 			if(isHit) {
 				g.drawImage(Entity.PLAYER_HIT, this.getX() - Camera.x, this.getY() - Camera.y, null);
@@ -94,8 +92,7 @@ public class Player extends Entity {
 			}else if(!isFlying && !isHit) {
 				g.drawImage(Entity.PLAYER_IS_FLYING[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 				}
-		} 
-				
+		}				
 	}
 	
 }
