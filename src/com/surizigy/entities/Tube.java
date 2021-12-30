@@ -6,14 +6,15 @@ import com.surizigy.main.Game;
 import com.surizigy.main.Sounds;
 
 public class Tube extends Entity {
-
+	
+	//initializing Tube
 	public Tube(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
-		// TODO Auto-generated constructor stub
 	}
 
-	public void tick() {
-		//initializing Loop			
+	//initializing Loop
+	public void tick() {			
+		//moving
 		x--;		
 		if(x == Game.WIDTH/2 - 32) {
 			Sounds.points.play(0.5);			
@@ -30,18 +31,9 @@ public class Tube extends Entity {
 		
 	}
 	
-	public void render(Graphics g) {
-		//rendering Tube
-		super.render(g);
-		/*if(sprite != null) {
-			g.drawImage(sprite, this.getX() - Camera.x, this.getY() - Camera.y, width, height, null);
-		} else {
-		
-		g.setColor(Color.green);
-		g.fillRect((int)x, (int)y, width, height);
-		}*/
-		
+	//rendering Tube
+	public void render(Graphics g) {		
+		super.render(g);		
 	}
-	
-	
+		
 }
