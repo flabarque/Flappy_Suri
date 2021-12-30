@@ -8,11 +8,14 @@ import java.awt.image.BufferedImage;
 import com.surizigy.entities.Entity;
 
 public class Menu {
-
+	
+	//initializing Variables
+	//images
 	public static BufferedImage TITLE = Game.spritesheet.getSprite(48, 192, 76, 36);
 	public static BufferedImage[] SPACE = {Game.spritesheet.getSprite(200, 224, 24, 8), Game.spritesheet.getSprite(200, 232, 24, 8)};
 	public static BufferedImage[] ESC = {Game.spritesheet.getSprite(192, 224, 8, 8), Game.spritesheet.getSprite(192, 232, 8, 8)};
 	
+	//options
 	public String[] options = {">Press SPACE<", ">Pause/Exit Game<"};
 		
 	public int currentOption = 0;
@@ -27,8 +30,9 @@ public class Menu {
 	public int frames_w = 0, maxFrames_w = 1, index_w = 0, maxIndex_w = 7;
 	public boolean isWaiting = true;
 	
+	//initializing Loop
 	public void tick() {		
-		
+		//moving and interacting through options
 		if(up) {
 			up = false;
 			currentOption--;
@@ -45,8 +49,7 @@ public class Menu {
 			Sounds.musicBackground.loop(0.25);	
 			space = false;
 			if(options[currentOption] == ">Press SPACE<") {
-				Game.gameState = "GET_READY";
-				//pause = false;				
+				Game.gameState = "GET_READY";								
 			}if(pause) {				
 				if(options[currentOption] == ">Press SPACE<") {
 					Game.gameState = "PLAYING";
@@ -78,8 +81,7 @@ public class Menu {
 			if (index2 > maxIndex) {
 				index2 = 0;
 			}
-		}
-		
+		}		
 		if(isWaiting) {		
 		frames_w++;
 			if(frames_w == maxFrames_w) {
@@ -94,6 +96,7 @@ public class Menu {
 	}
 	
 	public void render(Graphics g) {		
+		//rendering Menu
 		if(pause) {
 			g.setColor(new Color(0, 0, 0, 100));
 			g.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);	
@@ -106,7 +109,7 @@ public class Menu {
 			g.drawImage(Entity.PLAYER_IS_FLYING[index_w], Game.WIDTH*Game.SCALE/4, Game.HEIGHT*Game.SCALE/2, 37*Game.SCALE, 32*Game.SCALE, null);
 		}
 		
-		//Opções		
+		//options		
 		g.setColor(Color.black);
 		g.setFont(new Font("calibri", Font.BOLD, 25));
 		g.drawString(">Press SPACE<", ((Game.WIDTH*Game.SCALE) / 2) + 30, ((Game.HEIGHT*Game.SCALE) / 2) + 97);
@@ -124,8 +127,7 @@ public class Menu {
 			}
 			else if (options[currentOption] == ">Pause/Exit Game<") {
 				g.drawString(">", Game.WIDTH*Game.SCALE - 270, Game.HEIGHT*Game.SCALE -30);
-			}			
-		
+			}		
 	}
 	
 }
