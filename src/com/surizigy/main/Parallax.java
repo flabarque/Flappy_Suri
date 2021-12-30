@@ -7,14 +7,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Parallax {
-
+	
+	//initializing Variables
+	//images
 	public BufferedImage BACKGROUNDS_0;
-	public BufferedImage BACKGROUNDS_1;
-	public BufferedImage BACKGROUNDS_2;
+	public BufferedImage BACKGROUNDS_1;	
 	public BufferedImage BACKGROUNDS_3;
-	public BufferedImage BACKGROUNDS_4;
-	public BufferedImage BACKGROUNDS_5;
-
+	public BufferedImage BACKGROUNDS_4;	
+	
+	//movement
 	public int x_0 = 0;
 	public int x_1 = Game.WIDTH*Game.SCALE;
 	public int x_2 = 0;
@@ -23,24 +24,26 @@ public class Parallax {
 	public int x_5 = Game.WIDTH*Game.SCALE;
 	public double x_spd = 1;
 	
+	//initializing Parallax
 	public Parallax() {
 		try {
 			BACKGROUNDS_0 = ImageIO.read(getClass().getResource("/hills_layer_00.png"));
-			BACKGROUNDS_1 = ImageIO.read(getClass().getResource("/hills_layer_01.png"));
-			BACKGROUNDS_2 = ImageIO.read(getClass().getResource("/hills_layer_02.png"));
+			BACKGROUNDS_1 = ImageIO.read(getClass().getResource("/hills_layer_01.png"));			
 			BACKGROUNDS_3 = ImageIO.read(getClass().getResource("/hills_layer_03.png"));
-			BACKGROUNDS_4 = ImageIO.read(getClass().getResource("/hills_layer_04.png"));
-			BACKGROUNDS_5 = ImageIO.read(getClass().getResource("/hills_layer_05.png"));
+			BACKGROUNDS_4 = ImageIO.read(getClass().getResource("/hills_layer_04.png"));			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//initializing Loop
 	public void tick() {
+		//speeding up for difficulty
 		if(Game.score > 51) {
 			x_spd=+2;
 		}
 		
+		//moving Parallax
 		x_0-=x_spd;
 		if(x_0 + Game.WIDTH*Game.SCALE <= 0) {
 			x_0 = Game.WIDTH*Game.SCALE;
@@ -74,6 +77,7 @@ public class Parallax {
 	}
 	
 	public void render(Graphics g) {
+		//rendering Parallax
 		g.drawImage(BACKGROUNDS_0, 0, 0, 512, 256, null);
 		g.drawImage(BACKGROUNDS_1, x_0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT, null);
 		g.drawImage(BACKGROUNDS_1, x_1, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT, null);
