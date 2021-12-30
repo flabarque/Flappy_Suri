@@ -10,12 +10,15 @@ import java.io.IOException;
 
 public class HighScore {
 
+	//initializing Variables
 	public static boolean saveExists = false;
 	public static boolean saveGame = false;
 	
 	public static int bestScore;
 	
+	//initializing Loop
 	public void tick() {
+		//checking if Save File exists
 		File file = new File("save.txt");
 		if(file.exists()) {
 			saveExists = true;
@@ -25,8 +28,8 @@ public class HighScore {
 	
 	}
 	
-	public static void saveGame(String[] val1, int[] val2, int encode) {
-		//salvar com sistema de criptografia
+	//saving High Score
+	public static void saveGame(String[] val1, int[] val2, int encode) {		
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter("save.txt"));
@@ -37,9 +40,9 @@ public class HighScore {
 		for(int i = 0; i < val1.length; i++) {
 			String current = val1[i];
 			current+=":";
-			char[] value = Integer.toString(val2[i]).toCharArray(); //criptografia - nao se pode manipular o save
+			char[] value = Integer.toString(val2[i]).toCharArray();
 			for(int n = 0; n < value.length; n++) {
-				value[n]+=encode; //salvando é possitivo
+				value[n]+=encode;
 				current+=value[n];
 				}
 			try {
@@ -58,26 +61,27 @@ public class HighScore {
 			
 	}	
 
+	//loading High Score
 	public static String loadGame(int encode) {
 		String line = "";
 		File file = new File("save.txt");
 		if(file.exists()) {
 			try {
-				String singleLine = null; //comeca com linha vacia
+				String singleLine = null;
 				BufferedReader reader = new BufferedReader(new FileReader("save.txt"));
 				try {
-					while((singleLine = reader.readLine()) != null) { //le linha por linha, se está vazio para != null
-						String[] trans = singleLine.split(":"); //: para selecionar o level guardado, ex., level:3
+					while((singleLine = reader.readLine()) != null) {
+						String[] trans = singleLine.split(":");
 						char[] val = trans[1].toCharArray();
 						trans[1] = "";
 						for(int i = 0; i < val.length; i++) {
-							val[i]-=encode; //resgatando é negativo
+							val[i]-=encode;
 							trans[1]+=val[i];
 							}
 						line+=trans[0];
 						line+=":";
 						line+=trans[1];
-						line+="/"; //para poder ler de fato o arquivo save
+						line+="/";
 						}
 				}catch(IOException e){
 					}
@@ -88,32 +92,35 @@ public class HighScore {
 		return line;
 	}
 	
+	//executing Save Game
 	public static void applySave(String str) {
 		String[] spl = str.split("/");
 		for(int i = 0; i < spl.length; i++) {
-			String[] spl2 = spl[i].split(":"); //pegando o valor que fue salvo
+			String[] spl2 = spl[i].split(":");
 			switch(spl2[0]) {				
 				case "bestScore":
-					bestScore = Integer.parseInt(spl2[1]); //Intger.parseInt converte double em String
+					bestScore = Integer.parseInt(spl2[1]);
 					break;
 			}
 		}
 	}
 	
+	//initializing Best Score
 	public static int bestScore() {
 		File file = new File("save.txt");
 		if(file.exists()) {			
-			String saver = loadGame(10); //10 é o encode que usamos
+			String saver = loadGame(10);
 			applySave(saver);	
 		}
 		return bestScore;
 	}
 	
+	//setting New Best Score
 	public static void setNewBest (int newBestScore) {
 		bestScore = newBestScore;
-		String[] opt1 = {"bestScore"}; //salvando o nivel, mas podemos colocar outros parametros, como vida, posição dos inimigos, etc.
+		String[] opt1 = {"bestScore"}; 
 		int[] opt2 = {(int)Game.score};
-		HighScore.saveGame(opt1, opt2, 10); //neste caso o encode é igual a 10
+		HighScore.saveGame(opt1, opt2, 10);
 		System.out.println("New Best Score!");		
 	}
 	
