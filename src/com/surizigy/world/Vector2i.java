@@ -2,17 +2,17 @@ package com.surizigy.world;
 
 public class Vector2i {
 
-	//initializing variables
+	//initializing Variables
 	public int x, y;
 	
-	public Vector2i(int x, int y) {
-		//initializing Vector2i
+	//initializing Vector2i
+	public Vector2i(int x, int y) {		
 		this.x = x;
 		this.y = y;
 		}
 	
-	public boolean equals(Object object) {
-		//comparing two objects
+	//comparing two objects
+	public boolean equals(Object object) {		
 		Vector2i vac = (Vector2i) object;
 		if(vac.x == this.x && vac.y == this.y) {
 			return true;
