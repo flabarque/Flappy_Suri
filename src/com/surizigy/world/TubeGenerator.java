@@ -6,12 +6,13 @@ import com.surizigy.main.Game;
 
 public class TubeGenerator {
 
-	//initializing variables 
+	//initializing Variables 
 	public int time = 0;
 	public int targetTime = 0;
 			
-	public void tick() {
-		//initializing Loop 
+	//initializing Loop
+	public void tick() { 
+		//less time, more tubes, more difficulty
 		time++;
 		if(time == 105) {				
 			int heightup = Entity.rand.nextInt(90 - 5) + 5;
@@ -60,8 +61,7 @@ public class TubeGenerator {
 						
 				time = 0;
 			}
-		}
-			
+		}			
 	}
 	
 }
