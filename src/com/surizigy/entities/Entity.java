@@ -11,7 +11,6 @@ import com.surizigy.main.Game;
 import com.surizigy.world.Camera;
 import com.surizigy.world.Node;
 import com.surizigy.world.Vector2i;
-import com.surizigy.world.World;
 
 public class Entity {
 
@@ -58,12 +57,6 @@ public class Entity {
 			return 0;
 		}	
 	};
-	
-	public void updateCamera() {
-		//updating camera to stay at the center of the Game
-		Camera.x = Camera.clamp(this.getX() - (Game.WIDTH/2), 0, World.WIDTH*16 - Game.WIDTH);
-		Camera.y = Camera.clamp(this.getY() - (Game.HEIGHT/2), 0, World.HEIGHT*16 - Game.HEIGHT);
-	}
 	
 	//setting Entities coordinates
 	public void setX(int newX) {
