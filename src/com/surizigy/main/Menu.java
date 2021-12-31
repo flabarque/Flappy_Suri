@@ -14,6 +14,7 @@ public class Menu {
 	public static BufferedImage TITLE = Game.spritesheet.getSprite(48, 192, 76, 36);
 	public static BufferedImage[] SPACE = {Game.spritesheet.getSprite(200, 224, 24, 8), Game.spritesheet.getSprite(200, 232, 24, 8)};
 	public static BufferedImage[] ESC = {Game.spritesheet.getSprite(192, 224, 8, 8), Game.spritesheet.getSprite(192, 232, 8, 8)};
+	public static BufferedImage TRILOK = Game.spritesheet.getSprite(137, 224, 9, 9);
 	
 	//options
 	public String[] options = {">Press SPACE<", ">Pause/Exit Game<"};
@@ -114,12 +115,15 @@ public class Menu {
 		g.setFont(new Font("calibri", Font.BOLD, 25));
 		g.drawString(">Press SPACE<", ((Game.WIDTH*Game.SCALE) / 2) + 30, ((Game.HEIGHT*Game.SCALE) / 2) + 97);
 		g.drawString(">Pause/Exit Game<", Game.WIDTH*Game.SCALE - 260, Game.HEIGHT*Game.SCALE - 30);
+		g.drawString("by Trilok", (Game.WIDTH*Game.SCALE / 2) - 180, Game.HEIGHT*Game.SCALE - 30);
+		g.drawImage(TRILOK, ((Game.WIDTH*Game.SCALE) / 2) - 220, Game.HEIGHT*Game.SCALE - 51, 9*Game.SCALE, 9*Game.SCALE, null);
 		
 		g.setColor(Color.white);
 		g.setFont(new Font("calibri", Font.BOLD, 25));
 		g.drawString(">Press SPACE<", ((Game.WIDTH*Game.SCALE) / 2) + 29, ((Game.HEIGHT*Game.SCALE) / 2) + 96);
 		g.drawString(">Pause/Exit Game<", Game.WIDTH*Game.SCALE - 261, Game.HEIGHT*Game.SCALE - 31);
-			
+		g.drawString("by Trilok", (Game.WIDTH*Game.SCALE / 2) - 181, Game.HEIGHT*Game.SCALE - 31);	
+		
 		g.setColor(Color.black);
 		g.setFont(new Font("calibri", Font.BOLD, 25));
 			if(options[currentOption] == ">Press SPACE<") {

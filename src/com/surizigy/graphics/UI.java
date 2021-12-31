@@ -9,8 +9,9 @@ public class UI {
 
 	//initializing Variables
 	//images
-	public static BufferedImage GET_READY = Game.spritesheet.getSprite(48, 228, 67, 36);
-	public static BufferedImage BOARD = Game.spritesheet.getSprite(2, 267, 114, 82);
+	public static BufferedImage CONGRATS = Game.spritesheet.getSprite(128, 311, 65, 36);
+	public static BufferedImage BOARD_ACKNOW = Game.spritesheet.getSprite(205, 273, 127, 94);
+	public static BufferedImage THANKS = Game.spritesheet.getSprite(224, 192, 64, 25);
 	
 	public static BufferedImage[] BIG_NUMBER = {Game.spritesheet.getSprite(167, 4, 18, 25),
 												Game.spritesheet.getSprite(167, 36, 18, 25),
@@ -48,8 +49,9 @@ public class UI {
 			}			
 		//rendering Congratulations
 		}else if(Game.gameState == "PLAYING" && Game.score >= 99){
-			g.drawImage(GET_READY, ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 76*Game.SCALE, 36*Game.SCALE, null);
-			g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 57*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) + 25*Game.SCALE, 114*Game.SCALE, 82*Game.SCALE, null);
+			g.drawImage(CONGRATS, ((Game.WIDTH*Game.SCALE) / 2) - 32*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 65*Game.SCALE, 36*Game.SCALE, null);
+			g.drawImage(BOARD_ACKNOW, ((Game.WIDTH*Game.SCALE) / 2) - 62*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) + 22*Game.SCALE, 127*Game.SCALE, 94*Game.SCALE, null);
+			g.drawImage(THANKS, ((Game.WIDTH*Game.SCALE) / 2) - 32*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) - 50, 64*Game.SCALE, 25*Game.SCALE, null);
 		}		
 	}
 	
