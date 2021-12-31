@@ -41,7 +41,7 @@ public class Parallax {
 		//speeding up for difficulty
 		if(Game.score > 51) {
 			x_spd=+2;
-		}else if(Game.score >= 8) {
+		}else if(Game.score >= 99) {
 			x_spd=+4;			 
 		}
 		

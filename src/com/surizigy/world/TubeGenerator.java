@@ -26,7 +26,7 @@ public class TubeGenerator {
 					
 			time = 0;
 		
-		}else if(Game.score >= 7) {
+		}else if(Game.score >= 96) {
 				time--;			
 			
 		}else if (Game.score > 75) {

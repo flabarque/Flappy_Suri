@@ -37,7 +37,7 @@ public class UI {
 	//rendering UI
 	public void render(Graphics g) {
 		//rendering Game Score
-		if(Game.gameState == "PLAYING" && Game.score < 8) {						
+		if(Game.gameState == "PLAYING" && Game.score < 99) {						
 			String digits = ""+(int)Game.score;			
 			for (int i = 0; i < digits.length(); i++) {				
 				if(i != digits.length() - 1) {				
@@ -47,7 +47,7 @@ public class UI {
 				}				
 			}			
 		//rendering Congratulations
-		}else if(Game.gameState == "PLAYING" && Game.score >= 8){
+		}else if(Game.gameState == "PLAYING" && Game.score >= 99){
 			g.drawImage(GET_READY, ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 76*Game.SCALE, 36*Game.SCALE, null);
 			g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 57*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) + 25*Game.SCALE, 114*Game.SCALE, 82*Game.SCALE, null);
 		}		
