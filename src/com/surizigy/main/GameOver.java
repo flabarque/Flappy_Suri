@@ -22,7 +22,7 @@ public class GameOver extends Menu {
 	//initializing Loop
 	public void tick() {		
 		Sounds.musicBackground.stop(0);
-		
+				
 		//showing Message
 		frames++;
 		if(frames == 30) {

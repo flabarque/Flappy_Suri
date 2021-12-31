@@ -7,7 +7,10 @@ import com.surizigy.main.Game;
 
 public class UI {
 
-	//public static BufferedImage GAME_OVER = Game.spritesheet.getSprite(128, 192, 66, 25);
+	//initializing Variables
+	//images
+	public static BufferedImage GET_READY = Game.spritesheet.getSprite(48, 228, 67, 36);
+	public static BufferedImage BOARD = Game.spritesheet.getSprite(2, 267, 114, 82);
 	
 	public static BufferedImage[] BIG_NUMBER = {Game.spritesheet.getSprite(167, 4, 18, 25),
 												Game.spritesheet.getSprite(167, 36, 18, 25),
@@ -31,55 +34,22 @@ public class UI {
 												  Game.spritesheet.getSprite(163, 273, 11, 14),
 												  Game.spritesheet.getSprite(179, 273, 11, 14)};
 	
+	//rendering UI
 	public void render(Graphics g) {
-		if(Game.gameState == "PLAYING") {				
-			/*int temp = (int)Game.score;
-			int widthScore;
-			
-			while(temp > 0) {
-				switch(temp % 10) {
-				case 0:
-					widthScore = Game.WIDTH*Game.SCALE/2 - 18;
-				}
-			}*/
-			
+		//rendering Game Score
+		if(Game.gameState == "PLAYING" && Game.score < 8) {						
 			String digits = ""+(int)Game.score;			
 			for (int i = 0; i < digits.length(); i++) {				
-				//if(i != (digits.length() - 1)*100) {				
-					//g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18*Game.SCALE - 37, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
-				//}
 				if(i != digits.length() - 1) {				
 					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18*Game.SCALE - 1, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
 				}else {
-					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
-			//g.setColor(Color.white);
-			//g.setFont(new Font("calibri", Font.BOLD, 50));
-			//g.drawString(""+(int)Game.score, Game.WIDTH*Game.SCALE/2 - 15, Game.HEIGHT*Game.SCALE/4);		
+					g.drawImage(BIG_NUMBER[digits.charAt(i) - '0'], Game.WIDTH*Game.SCALE/2 - 18, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);					
 				}				
-			}
-			
-			/*char[] digits = (""+(int)Game.score).toCharArray();
-			int digitsCount = digits.length;
-			for (int i = 0; i < digitsCount; i++) {
-				g.drawImage(BIG_NUMBER[digits[i]], Game.WIDTH*Game.SCALE/2 - 18, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
-			}*/
-			
-			/*int widthOfImgs = 18*2;
-			int countMod = 0, temp = (int)Game.score;//assuming its an integer score
-			while (temp > 0){//given the score is always positive
-			    switch(temp % 10){
-			        case 0:
-			                //draw 1
-			                g.drawImage(BIG_NUMBER[0], (Game.WIDTH*Game.SCALE/2 - 18) - widthOfImgs * countMod, Game.HEIGHT*Game.SCALE/4, 18*2, 25*2, null);
-			                //curOffset += widthOfImage1;
-			                //dont recall the exact syntax daImage.width?
-			        case 2:
-			        //blah blah
-			    }
-			    ++countMod;// if the images are of constant width
-			    temp /= 10;
-			}*/
-			
+			}			
+		//rendering Congratulations
+		}else if(Game.gameState == "PLAYING" && Game.score >= 8){
+			g.drawImage(GET_READY, ((Game.WIDTH*Game.SCALE) / 2) - 38*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 4) - 90, 76*Game.SCALE, 36*Game.SCALE, null);
+			g.drawImage(BOARD, ((Game.WIDTH*Game.SCALE) / 2) - 57*Game.SCALE, ((Game.HEIGHT*Game.SCALE) / 2) + 25*Game.SCALE, 114*Game.SCALE, 82*Game.SCALE, null);
 		}		
 	}
 	

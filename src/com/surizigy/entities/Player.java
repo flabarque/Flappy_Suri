@@ -25,7 +25,7 @@ public class Player extends Entity {
 	public void tick() {
 		//flying Physics 
 		depth = 2;
-		speed = 1.5;		
+		speed = 1.5;			
 		
 		//velocity for difficulty
 		if(Game.score < 75) {

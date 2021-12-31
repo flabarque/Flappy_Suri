@@ -48,7 +48,7 @@ public class Menu {
 		if(space) {
 			Sounds.musicBackground.loop(0.25);	
 			space = false;
-			if(options[currentOption] == ">Press SPACE<") {
+			if(options[currentOption] == ">Press SPACE<") {				
 				Game.gameState = "GET_READY";								
 			}if(pause) {				
 				if(options[currentOption] == ">Press SPACE<") {

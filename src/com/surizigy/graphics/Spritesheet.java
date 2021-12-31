@@ -7,11 +7,11 @@ import javax.imageio.ImageIO;
 
 public class Spritesheet {
 
-	//initializing variables 
+	//initializing Variables 
 	private BufferedImage spritesheet;
 	
-	public Spritesheet(String path) {
-		//initializing sprite sheet 
+	//initializing Sprite Sheet
+	public Spritesheet(String path) {		 
 		try {
 			spritesheet = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {
@@ -19,8 +19,8 @@ public class Spritesheet {
 		}
 	}
 	
-	public BufferedImage getSprite(int x, int y, int width, int height) {
-		//getting sprite sheet 
+	//getting Sprite Sheet 
+	public BufferedImage getSprite(int x, int y, int width, int height) {	
 		return spritesheet.getSubimage(x, y, width, height);
 		
 	}

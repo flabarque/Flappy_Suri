@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	//game states
 	public Menu menu;
 	public GetReady getReady;
-	public GameOver gameOver;
+	public GameOver gameOver;	
 	
 	//score
 	public HighScore highScore;
@@ -78,7 +78,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		getReady = new GetReady();
 		gameOver = new GameOver();
 		highScore = new HighScore();
-		
+				
 	}
 	
 	//initializing Java Frame
@@ -148,7 +148,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				World.restartGame();
 			}
 		}
-				
+		
 	}
 	
 	//rendering Game 
@@ -184,8 +184,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			getReady.render(g);
 		
 		}else if(gameState == "GAME_OVER") {
-			gameOver.render(g);			
-		}		
+			gameOver.render(g);
+			
+		}
 		
 		bs.show();
 		
@@ -244,7 +245,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				e.getKeyCode() == KeyEvent.VK_W) {	
 			if(gameState == "MENU") {
 				menu.up = true;
-			}
+			}else if(gameState == "MENU") {
+				menu.up = true;
+			} 
 		
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN || 
 				e.getKeyCode() == KeyEvent.VK_S) {

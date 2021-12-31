@@ -27,7 +27,7 @@ public class Tube extends Entity {
 		
 		if(Player.isHit == true) {
 			x++;
-		}			
+		}
 		
 	}
 	

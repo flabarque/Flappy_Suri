@@ -14,6 +14,7 @@ public class TubeGenerator {
 	public void tick() { 
 		//less time, more tubes, more difficulty
 		time++;
+		
 		if(time == 105) {				
 			int heightup = Entity.rand.nextInt(90 - 5) + 5;
 			Tube tubeup = new Tube(Game.WIDTH, -heightup, 32, 128, 0, Entity.ZIGGY_96);
@@ -25,6 +26,9 @@ public class TubeGenerator {
 					
 			time = 0;
 		
+		}else if(Game.score >= 7) {
+				time--;			
+			
 		}else if (Game.score > 75) {
 			if(time == 35) {				
 				int heightup = Entity.rand.nextInt(65 - 5) + 5;
