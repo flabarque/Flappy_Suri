@@ -5,7 +5,7 @@
 Please, enjoy!
 
 This mini game clone was programmed using [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) in [Eclipse IDE](https://www.eclipse.org/ide/). 
-The basic programming follows [Danki Code](https://cursos.dankicode.com/)'s "Full Game Development Course", with updates on some classes from other sources:
+The basic programming follows [Danki Code](https://cursos.dankicode.com/)'s "Full Game Development Course", with adaptations on some classes from other sources:
 
 - [Parallax Class](https://www.youtube.com/watch?v=57yuUYY0l1Q&t=191s)
 - [Sounds Class](https://www.youtube.com/watch?v=gzZhjJz3BS0)
